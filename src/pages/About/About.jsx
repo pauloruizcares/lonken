@@ -4,7 +4,6 @@ import Principal from '../../layout/Principal/Principal'
 
 
 const About = (props) => {
-  console.log(props)
   return (<div data-testid='About'>
     <Principal>
       About Component

@@ -24,8 +24,6 @@ const RouteConsumer = ({ children }) => (
 
     const componentWithContext = React.cloneElement(children, context)
 
-    console.log(componentWithContext)
-
     return componentWithContext
   }}</Consumer>
 )

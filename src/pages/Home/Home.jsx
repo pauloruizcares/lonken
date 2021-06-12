@@ -3,7 +3,6 @@ import React from 'react'
 import Principal from '../../layout/Principal/Principal'
 
 const Home = (props) => {
-  console.log(props)
   return (<div data-testid='Home'>
     <Principal>
       Home Component
