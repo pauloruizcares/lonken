@@ -1,67 +1,90 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { AppBar,
-  IconButton,
   Toolbar,
   Typography,
-  Button,
   makeStyles,
-  Tabs,
-  Tab } from '@material-ui/core'
+  List,
+  ListItem,
+  Box,
+  Hidden,
+  IconButton,
+} from '@material-ui/core'
+import { useHistory } from 'react-router'
 import MenuIcon from '@material-ui/icons/Menu'
 
+
 const useStyles = makeStyles((theme) => ({
-  // root: {
-  //   flexGrow: 1,
-  // },
+  containerItems: {
+    display: 'flex',
+    width: '90%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  item: {
+    cursor: 'pointer',
+    marginLeft: 5,
+    marginRight: 5,
+  },
+  items: {
+    width: 'fit-content',
+    display: 'flex',
+  },
+  containerMenuButton: {
+    width: '65%',
+    textAlign: 'end',
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  // title: {
-  //   flexGrow: 1,
-  // },
 }))
 
 const Navbar = (props) => {
+  const { routes, onClickMenu } = props
   const classes = useStyles()
   const history = useHistory()
-  const { routes } = props
-
-  // return (<nav data-testid='Navbar'>
-  //   <div>
-  //     <ul>
-
-  //     </ul>
-  //   </div>
-  // </nav>)
 
   return (<AppBar position='static' data-testid='Navbar'>
     <Toolbar>
-      <IconButton
-        edge='start'
-        className={classes.menuButton}
-        color='inherit'
-        aria-label='menu'>
-        <MenuIcon />
-      </IconButton>
-      <Typography variant='h6' className={classes.title}>
-          News
+      <Typography variant='h6'>
+      Lonken Icon
       </Typography>
-      <Tabs>
-        {routes.map((route, indexRoute) => (
-          <Tab key={indexRoute} onClick={() => {
-            history.push(route.to)
-          }} label={route.title}>
-          </Tab>))}
-      </Tabs>
-      <Button color='inherit'>Login</Button>
+      <Hidden only='xs'>
+        <Box className={classes.containerItems}>
+          <List className={classes.items}>
+            {routes.map((route, indexRoute) => (
+              <ListItem
+                className={classes.item}
+                key={`item-${indexRoute}`}
+                onClick={() => {
+                  history.push(route.to)
+                }}>
+                <Typography>
+                  {route.title}
+                </Typography>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Hidden>
+      <Hidden only={[ 'sm', 'lg' ]}>
+        <Box className={classes.containerMenuButton}>
+          <IconButton onClick={onClickMenu}
+            edge='end'
+            className={classes.menuButton}
+            color='inherit'
+            aria-label='menu'>
+            <MenuIcon />
+          </IconButton>
+        </Box>
+      </Hidden>
     </Toolbar>
   </AppBar>)
 }
 
 Navbar.propTypes = {
   routes: PropTypes.array,
+  onClickMenu: PropTypes.func,
 }
 
 Navbar.defaultProps = {
