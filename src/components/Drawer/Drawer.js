@@ -50,12 +50,17 @@ const Drawer = (props) => {
 
   return (
     <DrawerMaterial
-      test-dataid='Drawer'
+      data-testid='Drawer'
       open={open}
       onClose={toggleDrawerHandler}>
       {sideList('left')}
     </DrawerMaterial>
   )
+}
+
+Drawer.defaultProps = {
+  open: false,
+  routes: [],
 }
 
 Drawer.propTypes = {
