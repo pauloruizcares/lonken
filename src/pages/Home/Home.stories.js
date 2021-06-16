@@ -1,5 +1,17 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import Home from './Home'
 
-storiesOf('Home', module).add('default', () => <Home />)
+export default {
+  title: 'Lonken/Pages/Home',
+  component: Home,
+  argTypes: {
+    backgroundColor: { control: 'color' },
+  },
+}
+
+const Template = (args) => <Home {...args} />
+
+export const Default = Template.bind({})
+Default.args = {
+  text: 'Home',
+}

@@ -1,17 +1,17 @@
 import React from 'react'
-import About from './About'
+import Drawer from './Drawer'
 
 export default {
-  title: 'Lonken/Pages/About',
-  component: About,
+  title: 'Lonken/Drawer',
+  component: Drawer,
   argTypes: {
     backgroundColor: { control: 'color' },
   },
 }
 
-const Template = (args) => <About {...args} />
+const Template = (args) => <Drawer {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  text: 'About',
+  text: 'Drawer',
 }
